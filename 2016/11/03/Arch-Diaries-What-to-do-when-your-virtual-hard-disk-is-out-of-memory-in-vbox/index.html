@@ -14,7 +14,7 @@
 <meta property="og:image" content="http://simplysanad.com/blog/blog/images/newharddrive.jpg">
 <meta property="og:image" content="http://simplysanad.com/blog/blog/images/fstab.jpg">
 <meta property="og:image" content="http://simplysanad.com/blog/blog/images/final.jpg">
-<meta property="og:updated_time" content="2016-11-04T03:20:13.000Z">
+<meta property="og:updated_time" content="2016-11-04T08:22:34.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Arch Diaries : What to do when your virtual hard disk is out of memory in virtualbox?">
 <meta name="twitter:description" content="So this happened while I was setting up my Arch Linux installation on Virtualbox. While installing LightDM I got an error saying there isn’t enough space in my / (root partition mounting point). My se">
@@ -127,19 +127,19 @@ ga('send', 'pageview');
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> </div><div class="line">error : permession denied</div></pre></td></tr></table></figure>
 <p>This was because I didn’t had enough permissions to read/execute/write to the <code>sanad</code> folder. A simple <code>chmod</code> fixed it.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo chmod 777 home/sanad</div></pre></td></tr></table></figure>
-<p>finally, <code>cd</code> took me to my home directory and I was able to use it normally :) . </p>
+<p>finally, <code>cd</code> took me to my home directory and I was able to use it normally :) </p>
+<p>This is how the setup looked like after the last step:<br><img src="/blog/images/final.jpg" alt="final setup"></p>
 <p>This was just the first step, now the next steps would be : </p>
 <p>1) Delete the partitions <code>sda2</code> and <code>sda3</code></p>
 <p>2) Extend <code>sda1</code> to use entire 5GB volume (by maybe using chroot and fdisk)</p>
 <p>3) Resize the file system for the new size of the partition ( maybe resize2fs). </p>
-<p>P.S. This is how the final setup looked like :<br><img src="/blog/images/final.jpg" alt="final setup"></p>
 <p>Till then, stay tuned and Happy Hacking!</p>
 <p>-Sanad<br><strong>For corrections/suggestions</strong> : sanad@computer.org</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://simplysanad.com/blog/blog/2016/11/03/Arch-Diaries-What-to-do-when-your-virtual-hard-disk-is-out-of-memory-in-vbox/" data-id="civ37qyyr0001kgr5unr154nm" class="article-share-link">Share</a>
+      <a data-url="http://simplysanad.com/blog/blog/2016/11/03/Arch-Diaries-What-to-do-when-your-virtual-hard-disk-is-out-of-memory-in-vbox/" data-id="civ3ik0ar0000m6r5h9nridls" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Arch/">Arch</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/fdisk/">fdisk</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/partition/">partition</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/virtualbox/">virtualbox</a></li></ul>
