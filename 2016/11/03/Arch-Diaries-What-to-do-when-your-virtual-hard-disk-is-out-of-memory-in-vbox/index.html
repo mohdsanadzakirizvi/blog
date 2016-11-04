@@ -14,7 +14,7 @@
 <meta property="og:image" content="http://simplysanad.com/blog/blog/images/newharddrive.jpg">
 <meta property="og:image" content="http://simplysanad.com/blog/blog/images/fstab.jpg">
 <meta property="og:image" content="http://simplysanad.com/blog/blog/images/final.jpg">
-<meta property="og:updated_time" content="2016-11-04T08:22:34.000Z">
+<meta property="og:updated_time" content="2016-11-04T08:38:32.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Arch Diaries : What to do when your virtual hard disk is out of memory in virtualbox?">
 <meta name="twitter:description" content="So this happened while I was setting up my Arch Linux installation on Virtualbox. While installing LightDM I got an error saying there isn’t enough space in my / (root partition mounting point). My se">
@@ -126,7 +126,7 @@ ga('send', 'pageview');
 <p>The above did the trick. The new <code>/home</code> had all the settings , data of the user <code>sanad</code>. Everything should work fine right? This time when I tried to CD to home I got another error :/ : </p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> </div><div class="line">error : permession denied</div></pre></td></tr></table></figure>
 <p>This was because I didn’t had enough permissions to read/execute/write to the <code>sanad</code> folder. A simple <code>chmod</code> fixed it.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo chmod 777 home/sanad</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ sudo chown -R sanad home/sanad <span class="comment"># change ownership of home folder to sanad</span></div><div class="line">$ sudo chmod u+rwx home/sanad <span class="comment"># give the read,write and execute permissions to the current owner (in this case 'sanad')</span></div><div class="line">$ <span class="built_in">cd</span> <span class="comment">#change directory to home/sanad will work</span></div><div class="line">$ ls <span class="_">-l</span> <span class="comment">#check permissions and ownership</span></div><div class="line">total 8</div><div class="line">drwx------ 2 root  root 4096 Nov 3 11:59 lost+found </div><div class="line">drwx------ 4 sanad root 4096 Nov 3 12:37 sanad</div></pre></td></tr></table></figure>
 <p>finally, <code>cd</code> took me to my home directory and I was able to use it normally :) </p>
 <p>This is how the setup looked like after the last step:<br><img src="/blog/images/final.jpg" alt="final setup"></p>
 <p>This was just the first step, now the next steps would be : </p>
@@ -139,7 +139,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://simplysanad.com/blog/blog/2016/11/03/Arch-Diaries-What-to-do-when-your-virtual-hard-disk-is-out-of-memory-in-vbox/" data-id="civ3ik0ar0000m6r5h9nridls" class="article-share-link">Share</a>
+      <a data-url="http://simplysanad.com/blog/blog/2016/11/03/Arch-Diaries-What-to-do-when-your-virtual-hard-disk-is-out-of-memory-in-vbox/" data-id="civ3j4eja0000qjr5ydhtwidr" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Arch/">Arch</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/fdisk/">fdisk</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/partition/">partition</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/virtualbox/">virtualbox</a></li></ul>
