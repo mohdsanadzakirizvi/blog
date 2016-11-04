@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>My experiments code , music and life</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="A place where I share my experiences in tech,music,life and virtually anything">
+<meta property="og:type" content="website">
+<meta property="og:title" content="My experiments code , music and life">
+<meta property="og:url" content="http://simplysanad.com/blog/index.html">
+<meta property="og:site_name" content="My experiments code , music and life">
+<meta property="og:description" content="A place where I share my experiences in tech,music,life and virtually anything">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="My experiments code , music and life">
+<meta name="twitter:description" content="A place where I share my experiences in tech,music,life and virtually anything">
+  
+    <link rel="alternate" href="/atom.xml" title="My experiments code , music and life" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/blog/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/blog/" id="logo">My experiments code , music and life</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://simplysanad.com/blog"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-Arch-Diaries-What-to-do-when-your-virtual-hard-disk-is-out-of-memory-in-vbox" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2016/11/03/Arch-Diaries-What-to-do-when-your-virtual-hard-disk-is-out-of-memory-in-vbox/" class="article-date">
+  <time datetime="2016-11-03T18:00:08.000Z" itemprop="datePublished">2016-11-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2016/11/03/Arch-Diaries-What-to-do-when-your-virtual-hard-disk-is-out-of-memory-in-vbox/">Arch Diaries : What to do when your virtual hard disk is out of memory in virtualbox?</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>So this happened while I was setting up my <a href="http://archlinux.org/" target="_blank" rel="external">Arch Linux</a> installation on Virtualbox. While installing <a href="https://www.freedesktop.org/wiki/Software/LightDM/" target="_blank" rel="external">LightDM</a> I got an error saying there isn’t enough space in my <strong>/ (root partition mounting point)</strong>. My setup for the drive partition was :<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">NAME        SIZE        MOUNTPOINT</div><div class="line"> - sda</div><div class="line">   -- sda1   2GB        /            </div><div class="line">   -- sda2   2GB        /home        </div><div class="line">   -- sda3   1GB        swap</div></pre></td></tr></table></figure></p>
+<p>I soon realised my mistake , I needed more space in my root partition but Virtualbox won’t allow me to increase the hardisk size. The only option would be to repeat the entire process ,<br><code>create a virtual machine with a larger hard drive --&gt; install Arch.</code></p>
+<p>I was looking for a smarter way to avoid repeating the entire procedure. Based on a hunch I created a new hard drive <strong>NewVirtualDisk.vdi</strong> for the Arch installation :<br><img src="/blog/images/newharddrive.jpg" alt="NewVirtualDisk"></p>
+<p>The new hard drive was mounted as <code>/dev/sdb</code>. My plan was to <em>move the /home partition to the 8GB volume and give the entire 5GB to the / partition</em> . This way both the root and home will have good amount of space.</p>
+<p>The first step was to format the raw 8GB volume into <strong>ext4</strong> and make a primary partition in it :<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo mkfs.ext4 /dev/sdb <span class="comment">#format /dev/sdb to ext4</span></div></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ sudo umount /dev/sdb</div><div class="line">$ sudo fdisk /dev/sdb</div><div class="line">$(fdisk console) p <span class="comment">#print existing partition table</span></div><div class="line">$(fdisk console) n <span class="comment">#create a new partition </span></div><div class="line">$(fdisk console) w <span class="comment">#commit the changes</span></div></pre></td></tr></table></figure>
+<p>The new partition looked like this :<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$ lsblk</div><div class="line">NAME        SIZE        MOUNTPOINT</div><div class="line"> - sda</div><div class="line">   -- sda1   2GB        /            </div><div class="line">   -- sda2   2GB        /home        </div><div class="line">   -- sda3   1GB        swap         </div><div class="line"> - sdb</div><div class="line">   -- sdb1   8GB</div></pre></td></tr></table></figure></p>
+<p>Great now I had my hard drive and partitions ready, next step was to safely mount <code>/home</code> in <code>/dev/sdb1</code> instead of current <code>/dev/sda2</code>.</p>
+<p>Here comes the interesting part, for making changes to the mounting point of /home we need to first edit the <code>fstab</code> file which we generated during our installation.</p>
+<p>The <img src="https://en.wikipedia.org/wiki/Fstab" alt="fstab or File Systems Table"> is a system configuration file that typically <strong><em>lists all available disk partitions indicating how they are to be initialized or otherwise integrated into the larger file system structure</em></strong>. It is read by <code>mount</code> command, which happens automatically at boot time to determine the overall file system structure.</p>
+<p><em>fstab</em> is found at <code>/etc/fstab</code> and can be set up in two modes , either using the <em>uuid</em> or <em>label</em> of the partitions. Both the label and uuid info of partitions can be found by :</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ lsblk <span class="_">-f</span></div></pre></td></tr></table></figure>
+<p>To make changes to fstab one needs root priviledges :<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo nano /etc/fstab</div></pre></td></tr></table></figure></p>
+<p>In the fstab, we have to replace the <em>label or uuid</em> of <code>sda2</code> with <code>sdb1</code> in <code>/home</code> mount point section. This is how my fstab looked like after the changes :<br><img src="/blog/images/fstab.jpg" alt="fstab"></p>
+<p>As can be seen , <code>/home</code> is now supposed to be mounted on <code>/dev/sdb1</code>. </p>
+<p>Now since the <code>mount</code> command reads <code>fstab</code> just a single unmounting and remounting process will mount <code>/home</code> correctly onto <code>/dev/sdb1</code> but we need to change to <code>/</code> before we can unmount/mount <code>/home</code> because you can’t unmount the file system you are currently in.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> / <span class="comment"># switch to root</span></div><div class="line">$ sudo umount /home</div><div class="line">$ sudo mount /home</div></pre></td></tr></table></figure>
+<p>Doing <code>lsblk</code> now showed <code>/home</code> is correctly mounted on <code>/dev/sdb1</code> but there was an issue, when I tried changing to my home directly it threw an error.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> </div><div class="line">error : could not find home/sanad</div></pre></td></tr></table></figure></p>
+<p>This error took me quite long to understand :P . What this meant was there was no <code>sanad</code> directory in our new <code>/home</code>. This was because the <em>installation was done on sda2 and the entire folder of user <code>sanad</code> was there</em>. What to do now? Simple, <strong><em>Copy all the contents of the folder from the other partition !</em></strong>(by the way this was a hunch) :D</p>
+<p>First I needed to mount the previous partition <code>/dev/sda2</code> at a temporary place. Google helped me find that <code>/mnt</code> is used for the very same purpose.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo mount /dev/sda2 /mnt</div><div class="line">$ sudo cp -r -v /mnt/sanad/ home/</div></pre></td></tr></table></figure>
+<p>The above did the trick. The new <code>/home</code> had all the settings , data of the user <code>sanad</code>. Everything should work fine right? This time when I tried to CD to home I got another error :/ : </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> </div><div class="line">error : permession denied</div></pre></td></tr></table></figure>
+<p>This was because I didn’t had enough permissions to read/execute/write to the <code>sanad</code> folder. A simple <code>chmod</code> fixed it.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo chmod 777 home/sanad</div></pre></td></tr></table></figure>
+<p>finally, <code>cd</code> took me to my home directory and I was able to use it normally :) .</p>
+<p>This was just the first step, now the next steps would be : </p>
+<p>1) Delete the partitions <code>sda2</code> and <code>sda3</code></p>
+<p>2) Extend <code>sda1</code> to use entire 5GB volume (by maybe using chroot and fdisk)</p>
+<p>3) Resize the file system for the new size of the partition ( maybe resize2fs). </p>
+<p>Till then, stay tuned and Happy Hacking!</p>
+<p>-Sanad<br><strong>For corrections/suggestions</strong> : sanad@computer.org</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://simplysanad.com/blog/blog/2016/11/03/Arch-Diaries-What-to-do-when-your-virtual-hard-disk-is-out-of-memory-in-vbox/" data-id="civ33yhmy0000bmr5kgda6xii" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Arch/">Arch</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/fdisk/">fdisk</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/partition/">partition</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/virtualbox/">virtualbox</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2016/11/03/hello-world/" class="article-date">
+  <time datetime="2016-11-03T17:47:02.000Z" itemprop="datePublished">2016-11-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2016/11/03/hello-world/">Hello World</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://simplysanad.com/blog/blog/2016/11/03/hello-world/" data-id="civ33yhn30001bmr5midyfrej" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Arch/">Arch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/fdisk/">fdisk</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/partition/">partition</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/virtualbox/">virtualbox</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/blog/tags/Arch/" style="font-size: 10px;">Arch</a> <a href="/blog/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/blog/tags/fdisk/" style="font-size: 10px;">fdisk</a> <a href="/blog/tags/partition/" style="font-size: 10px;">partition</a> <a href="/blog/tags/virtualbox/" style="font-size: 10px;">virtualbox</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/11/">November 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/blog/2016/11/03/Arch-Diaries-What-to-do-when-your-virtual-hard-disk-is-out-of-memory-in-vbox/">Arch Diaries : What to do when your virtual hard disk is out of memory in virtualbox?</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2016/11/03/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Mohd Sanad Zaki Rizvi<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/blog/js/script.js"></script>
+
+  </div>
+</body>
+</html>
