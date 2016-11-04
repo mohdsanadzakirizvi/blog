@@ -95,7 +95,7 @@
 <p>The new partition looked like this :<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$ lsblk</div><div class="line">NAME        SIZE        MOUNTPOINT</div><div class="line"> - sda</div><div class="line">   -- sda1   2GB        /            </div><div class="line">   -- sda2   2GB        /home        </div><div class="line">   -- sda3   1GB        swap         </div><div class="line"> - sdb</div><div class="line">   -- sdb1   8GB</div></pre></td></tr></table></figure></p>
 <p>Great now I had my hard drive and partitions ready, next step was to safely mount <code>/home</code> in <code>/dev/sdb1</code> instead of current <code>/dev/sda2</code>.</p>
 <p>Here comes the interesting part, for making changes to the mounting point of /home we need to first edit the <code>fstab</code> file which we generated during our installation.</p>
-<p>The <img src="https://en.wikipedia.org/wiki/Fstab" alt="fstab or File Systems Table"> is a system configuration file that typically <strong><em>lists all available disk partitions indicating how they are to be initialized or otherwise integrated into the larger file system structure</em></strong>. It is read by <code>mount</code> command, which happens automatically at boot time to determine the overall file system structure.</p>
+<p>The <a href="https://en.wikipedia.org/wiki/Fstab" target="_blank" rel="external">fstab or File Systems Table</a> is a system configuration file that typically <strong><em>lists all available disk partitions indicating how they are to be initialized or otherwise integrated into the larger file system structure</em></strong>. It is read by <code>mount</code> command, which happens automatically at boot time to determine the overall file system structure.</p>
 <p><em>fstab</em> is found at <code>/etc/fstab</code> and can be set up in two modes , either using the <em>uuid</em> or <em>label</em> of the partitions. Both the label and uuid info of partitions can be found by :</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ lsblk <span class="_">-f</span></div></pre></td></tr></table></figure>
 <p>To make changes to fstab one needs root priviledges :<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo nano /etc/fstab</div></pre></td></tr></table></figure></p>
@@ -122,7 +122,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://simplysanad.com/blog/blog/2016/11/03/Arch-Diaries-What-to-do-when-your-virtual-hard-disk-is-out-of-memory-in-vbox/" data-id="civ33yhmy0000bmr5kgda6xii" class="article-share-link">Share</a>
+      <a data-url="http://simplysanad.com/blog/blog/2016/11/03/Arch-Diaries-What-to-do-when-your-virtual-hard-disk-is-out-of-memory-in-vbox/" data-id="civ34pn4b0000err5t9pwniec" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Arch/">Arch</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/fdisk/">fdisk</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/partition/">partition</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/virtualbox/">virtualbox</a></li></ul>
@@ -169,7 +169,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://simplysanad.com/blog/blog/2016/11/03/hello-world/" data-id="civ33yhn30001bmr5midyfrej" class="article-share-link">Share</a>
+      <a data-url="http://simplysanad.com/blog/blog/2016/11/03/hello-world/" data-id="civ34pn4h0001err5o6a6iuf0" class="article-share-link">Share</a>
       
       
     </footer>
