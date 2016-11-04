@@ -117,12 +117,12 @@ ga('send', 'pageview');
 <p>Now since the <code>mount</code> command reads <code>fstab</code> just a single unmounting and remounting process will mount <code>/home</code> correctly onto <code>/dev/sdb1</code> but we need to change to <code>/</code> before we can unmount/mount <code>/home</code> because you can’t unmount the file system you are currently in.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> / <span class="comment"># switch to root</span></div><div class="line">$ sudo umount /home</div><div class="line">$ sudo mount /home</div></pre></td></tr></table></figure>
 <p>Doing <code>lsblk</code> now showed <code>/home</code> is correctly mounted on <code>/dev/sdb1</code> but there was an issue, when I tried changing to my home directly it threw an error.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> </div><div class="line">error : could not find home/sanad</div></pre></td></tr></table></figure></p>
-<p>This error took me quite long to understand :P . What this meant was there was no <code>sanad</code> directory in our new <code>/home</code>. This was because the <em>installation was done on sda2 and the entire folder of user <code>sanad</code> was there</em>. What to do now? Simple, <strong><em>Copy all the contents of the folder from the other partition !</em></strong>(by the way this was a hunch) :D</p>
+<p>This error took me quite long to understand. What this meant was there was no <code>sanad</code> directory in our new <code>/home</code>. This was because the <em>installation was done on sda2 and the entire folder of user <code>sanad</code> was there</em>. What to do now? Simple, <strong><em>Copy all the contents of the folder from the other partition ! </em></strong>(by the way this was a hunch) </p>
 <p>First I needed to mount the previous partition <code>/dev/sda2</code> at a temporary place. Google helped me find that <code>/mnt</code> is used for the very same purpose.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo mount /dev/sda2 /mnt</div><div class="line">$ sudo cp -r -v /mnt/sanad/ home/</div></pre></td></tr></table></figure>
-<p>The above did the trick. The new <code>/home</code> had all the settings , data of the user <code>sanad</code>. Everything should work fine right? This time when I tried to CD to home I got another error :/ : </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> </div><div class="line">error : permession denied</div></pre></td></tr></table></figure>
-<p>This was because I didn’t had enough permissions to read/execute/write to the <code>sanad</code> folder. A simple <code>chmod</code> fixed it.</p>
+<p>The above did the trick. The new <code>/home</code> had all the settings , data of the user <code>sanad</code>. Everything should work fine right? This time when I tried to CD to home I got another error : </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> </div><div class="line">error : permission denied</div></pre></td></tr></table></figure>
+<p>This was because I didn’t had enough permissions to read/execute/write to the <code>sanad</code> folder. A simple setting of <code>ownerships</code> and <code>permissions</code> fixed it.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ sudo chown -R sanad home/sanad <span class="comment"># change ownership of home folder to sanad</span></div><div class="line">$ sudo chmod u+rwx home/sanad <span class="comment"># give the read,write and execute permissions to the current owner (in this case 'sanad')</span></div><div class="line">$ <span class="built_in">cd</span> <span class="comment">#change directory to home/sanad will work</span></div><div class="line">$ ls <span class="_">-l</span> <span class="comment">#check permissions and ownership</span></div><div class="line">total 8</div><div class="line">drwx------ 2 root  root 4096 Nov 3 11:59 lost+found </div><div class="line">drwx------ 4 sanad root 4096 Nov 3 12:37 sanad</div></pre></td></tr></table></figure>
 <p>finally, <code>cd</code> took me to my home directory and I was able to use it normally :) </p>
 <p>This is how the setup looked like after the last step:<br><img src="/blog/images/final.jpg" alt="final setup"></p>
@@ -136,7 +136,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://simplysanad.com/blog/blog/2016/11/03/Arch-Diaries-What-to-do-when-your-virtual-hard-disk-is-out-of-memory-in-vbox/" data-id="civ3j4eja0000qjr5ydhtwidr" class="article-share-link">Share</a>
+      <a data-url="http://simplysanad.com/blog/blog/2016/11/03/Arch-Diaries-What-to-do-when-your-virtual-hard-disk-is-out-of-memory-in-vbox/" data-id="civ3mq9o30000ser5lnuw497y" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Arch/">Arch</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/fdisk/">fdisk</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/partition/">partition</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/virtualbox/">virtualbox</a></li></ul>
@@ -183,7 +183,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://simplysanad.com/blog/blog/2016/11/03/hello-world/" data-id="civ3j4ejf0001qjr5e4us6jtc" class="article-share-link">Share</a>
+      <a data-url="http://simplysanad.com/blog/blog/2016/11/03/hello-world/" data-id="civ3mq9oa0001ser5g3uipkcb" class="article-share-link">Share</a>
       
       
     </footer>
