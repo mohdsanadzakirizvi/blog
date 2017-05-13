@@ -15,7 +15,7 @@
 <meta property="og:image" content="http://simplysanad.com/blog/blog/images/car.png">
 <meta property="og:image" content="http://simplysanad.com/blog/blog/images/car2.png">
 <meta property="og:image" content="http://simplysanad.com/blog/blog/images/car3.png">
-<meta property="og:updated_time" content="2017-05-13T13:39:18.000Z">
+<meta property="og:updated_time" content="2017-05-13T13:41:53.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Experiments with concepts of Image Processing">
 <meta name="twitter:description" content="I was using MacOS’s Preview to sign a PDF document and came across this amazing feature that lets you create a digital version of your signature by clicking a photo of it through your webcam. This in">
@@ -103,7 +103,7 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="/blog/images/car.png" alt="Car Pic im Matplotlib"></p>
+        <p><img src="/blog/images/car.png" alt="Car Pic in Matplotlib"></p>
 <p>I was using <strong>MacOS’s Preview</strong> to sign a PDF document and came across this amazing feature that lets you create a digital version of your signature by clicking a photo of it through your webcam. This <strong>intrigued</strong> me towards thinking what kind of technology goes into building a nifty feature like that. I haven’t been able to get all my answers yet but the following are a list of few things that I have learnt till now.</p>
 <p><strong>Setting up the Environment</strong></p>
 <p>I have primarily used <strong>Python 2.7.x</strong> for the experimentation. The following libraries are required : </p>
@@ -134,11 +134,11 @@ ga('send', 'pageview');
 <p>In order to detect an object, its borders should be detected first. For that purpose we use <strong>Gradient Vectors</strong> of <strong>pixels</strong> of an image. Roughly speaking, gradient vector is the <em>“<strong>change</strong> in x and y direction”</em> of a pixel. Chris McCormick explains it beautifully in his <a href="http://mccormickml.com/2013/05/07/gradient-vectors/" target="_blank" rel="external">blog</a>.</p>
 <p>Gradient vector can be calculated by using numpy’s <strong>gradient()</strong> method. This method returns two vectors of change in gradient x and gradient y respectively.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#X and Y gradients</span></div><div class="line">gx, gy = np.gradient(img_gray)</div><div class="line"><span class="comment">#Calculating magnitude of the gradient vector</span></div><div class="line">g = (gx ** <span class="number">2</span> + gy ** <span class="number">2</span>) ** <span class="number">.5</span></div><div class="line"><span class="comment">#plotting g</span></div><div class="line">plt.imshow(g)</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Since gradient vector is the _&quot;change in x and y direction&quot;_,</div><div class="line">the change will be maximum around borders in an image</div></pre></td></tr></table></figure>
-<p>The following was the outcome of the experiment:</p>
+<p><code>Since gradient vector is the &quot;change in x and y direction&quot;,
+the change will be maximum around borders in an image</code><br>The following was the outcome of the experiment:</p>
 <p><img src="/blog/images/car.png" alt="Original Car Picture"></p>
 <p><img src="/blog/images/car2.png" alt="Car in Gray Scale"></p>
-<p><img src="/blog/images/car3.png" alt="Car Image after plotting g~magnitude of gradient vector shows borders"></p>
+<p><img src="/blog/images/car3.png" alt="Car Image after plotting g ~ magnitude of gradient vector shows borders"></p>
 <p>As can be seen we <strong>extract useful features</strong> of the image, step by step removing/ignoring the information we don’t need. </p>
 <p>We followed the following steps :</p>
 <ul>
@@ -151,7 +151,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://simplysanad.com/blog/blog/2017/05/13/Experiments-with-concepts-of-Image-Processing/" data-id="cj2nbj0dn0000jir53lt4gr0v" class="article-share-link">Share</a>
+      <a data-url="http://simplysanad.com/blog/blog/2017/05/13/Experiments-with-concepts-of-Image-Processing/" data-id="cj2nbmd0k0001krr58ycynlq7" class="article-share-link">Share</a>
       
         <a href="http://simplysanad.com/blog/blog/2017/05/13/Experiments-with-concepts-of-Image-Processing/#disqus_thread" class="article-comment-link">Comments</a>
       
