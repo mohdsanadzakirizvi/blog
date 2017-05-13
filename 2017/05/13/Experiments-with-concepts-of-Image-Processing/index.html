@@ -14,7 +14,7 @@
 <meta property="og:image" content="http://simplysanad.com/blog/blog/images/car.png">
 <meta property="og:image" content="http://simplysanad.com/blog/blog/images/car2.png">
 <meta property="og:image" content="http://simplysanad.com/blog/blog/images/car3.png">
-<meta property="og:updated_time" content="2017-05-13T13:07:29.000Z">
+<meta property="og:updated_time" content="2017-05-13T13:16:28.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Experiments with concepts of Image Processing">
 <meta name="twitter:description" content="I was using MacOS’s Preview to sign a PDF document and came across this amazing feature that lets you create a digital version of your signature by clicking a photo of it through your webcam. This int">
@@ -130,15 +130,23 @@ ga('send', 'pageview');
 </ul>
 <h2 id="Experiment-1-Object-Detection"><a href="#Experiment-1-Object-Detection" class="headerlink" title="Experiment 1 : Object Detection"></a>Experiment 1 : Object Detection</h2><p>In order to detect an object, its borders should be detected first. For that purpose we use <strong>Gradient Vectors</strong> of <strong>pixels</strong> of an image. Roughly speaking, gradient vector is the <em>“<strong>change</strong> in x and y direction”</em> of a pixel. Chris McCormick explains it beautifully in his <a href="http://mccormickml.com/2013/05/07/gradient-vectors/" target="_blank" rel="external">blog</a>.</p>
 <p>Gradient vector can be calculated by using numpy’s <strong>gradient()</strong> method.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#X and Y gradients</span></div><div class="line">gx, gy = np.gradient(img_gray)</div><div class="line"><span class="comment">#Calculating magnitude of the vector</span></div><div class="line">g = (gx ** <span class="number">2</span> + g ** <span class="number">2</span>) ** <span class="number">.5</span></div><div class="line"><span class="comment">#plotting g</span></div><div class="line">plt.imshow(g)</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#X and Y gradients</span></div><div class="line">gx, gy = np.gradient(img_gray)</div><div class="line"><span class="comment">#Calculating magnitude of the gradient vector</span></div><div class="line">g = (gx ** <span class="number">2</span> + gy ** <span class="number">2</span>) ** <span class="number">.5</span></div><div class="line"><span class="comment">#plotting g</span></div><div class="line">plt.imshow(g)</div></pre></td></tr></table></figure>
 <p><img src="/blog/images/car.png" alt="Original Car Picture"></p>
 <p><img src="/blog/images/car2.png" alt="Car in Gray Scale"></p>
 <p><img src="/blog/images/car3.png" alt="Car Image after plotting **g** shows borders"></p>
+<p>As can be seen we <strong>extract useful features</strong> of the image, step by step removing/ignoring the information we don’t need. </p>
+<p>We followed the following steps :</p>
+<ul>
+<li>Removed the colours by converting the image to gray scale</li>
+<li>Replaced the pixel values by calculating pixel gradient </li>
+<li>Calculated the <strong>gradient vector’s magnitude</strong> by the formula : <code>g = (gx ** 2 + gy ** 2) ** .5</code></li>
+<li>On plotting this magnitude, we can an image with borders clearly marked.</li>
+</ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://simplysanad.com/blog/blog/2017/05/13/Experiments-with-concepts-of-Image-Processing/" data-id="cj2nae48s0000g8r59tcmzi3m" class="article-share-link">Share</a>
+      <a data-url="http://simplysanad.com/blog/blog/2017/05/13/Experiments-with-concepts-of-Image-Processing/" data-id="cj2napmwk0000h6r5pujdxm1w" class="article-share-link">Share</a>
       
         <a href="http://simplysanad.com/blog/blog/2017/05/13/Experiments-with-concepts-of-Image-Processing/#disqus_thread" class="article-comment-link">Comments</a>
       
