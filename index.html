@@ -126,8 +126,7 @@ ga('send', 'pageview');
 <li>np.uint8 : Unsigned integer (0 to 255)</li>
 <li>float64 : Double precision float: sign bit, 11 bits exponent, 52 bits mantissa</li>
 </ul>
-<p>##Experiment 1 : Object Detection</p>
-<p>In order to detect an object, its borders should be detected first. For that purpose we use <strong>Gradient Vectors</strong> of <strong>pixels</strong> of an image. Roughly speaking, gradient vector is the <em>“<strong>change</strong> in x and y direction”</em> of a pixel. Chris McCormick explains it beautifully in his <a href="http://mccormickml.com/2013/05/07/gradient-vectors/" target="_blank" rel="external">blog</a>.</p>
+<h1 id="Experiment-1-Object-Detection"><a href="#Experiment-1-Object-Detection" class="headerlink" title="Experiment 1 : Object Detection"></a>Experiment 1 : Object Detection</h1><p>In order to detect an object, its borders should be detected first. For that purpose we use <strong>Gradient Vectors</strong> of <strong>pixels</strong> of an image. Roughly speaking, gradient vector is the <em>“<strong>change</strong> in x and y direction”</em> of a pixel. Chris McCormick explains it beautifully in his <a href="http://mccormickml.com/2013/05/07/gradient-vectors/" target="_blank" rel="external">blog</a>.</p>
 <p>Gradient vector can be calculated by using numpy’s <strong>gradient()</strong> method. This method returns two vectors of change in gradient x and gradient y respectively.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#X and Y gradients</span></div><div class="line">gx, gy = np.gradient(img_gray)</div><div class="line"><span class="comment">#Calculating magnitude of the gradient vector</span></div><div class="line">g = (gx ** <span class="number">2</span> + gy ** <span class="number">2</span>) ** <span class="number">.5</span></div><div class="line"><span class="comment">#plotting g</span></div><div class="line">plt.imshow(g)</div></pre></td></tr></table></figure>
 <p><code>Since gradient vector is the &quot;change in x and y direction&quot;,
@@ -147,7 +146,7 @@ the change will be maximum around borders in an image</code><br>The following wa
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://simplysanad.com/blog/blog/2017/05/13/Experiments-with-concepts-of-Image-Processing/" data-id="cj2nbmd0k0001krr58ycynlq7" class="article-share-link">Share</a>
+      <a data-url="http://simplysanad.com/blog/blog/2017/05/13/Experiments-with-concepts-of-Image-Processing/" data-id="cj2nc0lha0000mtr5or5asxzg" class="article-share-link">Share</a>
       
         <a href="http://simplysanad.com/blog/blog/2017/05/13/Experiments-with-concepts-of-Image-Processing/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -221,7 +220,7 @@ the change will be maximum around borders in an image</code><br>The following wa
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://simplysanad.com/blog/blog/2016/11/03/Arch-Diaries-What-to-do-when-your-virtual-hard-disk-is-out-of-memory-in-vbox/" data-id="cj2nbmd0e0000krr52ca6rxfq" class="article-share-link">Share</a>
+      <a data-url="http://simplysanad.com/blog/blog/2016/11/03/Arch-Diaries-What-to-do-when-your-virtual-hard-disk-is-out-of-memory-in-vbox/" data-id="cj2nc0li5000fmtr5x2hwhduv" class="article-share-link">Share</a>
       
         <a href="http://simplysanad.com/blog/blog/2016/11/03/Arch-Diaries-What-to-do-when-your-virtual-hard-disk-is-out-of-memory-in-vbox/#disqus_thread" class="article-comment-link">Comments</a>
       
