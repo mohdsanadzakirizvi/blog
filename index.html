@@ -100,44 +100,42 @@ ga('send', 'pageview');
     <div class="article-entry" itemprop="articleBody">
       
         <p>I was using <strong>MacOS’s Preview</strong> to sign a PDF document and came across this amazing feature that lets you create a digital version of your signature by clicking a photo of it through your webcam. This <strong>intrigued</strong> me towards thinking what kind of technology goes into building a nifty feature like that. I haven’t been able to get all my answers yet but the following are a list of few things that I have learnt till now.</p>
-<p>###Setting up the Environment</p>
+<p><strong>Setting up the Environment</strong></p>
 <p>I have primarily used <strong>Python 2.7.x</strong> for the experimentation. The following libraries are required : </p>
 <pre><code>- mahotas
 - scikit-image
 - matplotlib
 - numpy
 </code></pre><p>These libraries can be found on <strong>pip</strong> or any such python package manager.</p>
-<p>###Reading an image into memory</p>
+<p><strong>Reading an image into memory</strong></p>
 <p>Image can be read by using mahotas. </p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> mahotas <span class="keyword">as</span> mh</div><div class="line"></div><div class="line">img = mh.imread(<span class="string">'image.jpg'</span>)</div></pre></td></tr></table></figure>
 <p>The image is stored in the form of a <strong><em>multidimensional numpy array</em></strong> of pixels. This is useful when further processing is done on the image.</p>
-<p>###Displaying the image using pyplot<br>Displaying an image through various stages of processing can be useful and give insights into how the process affects the image.</p>
+<p><strong>Displaying the image using pyplot</strong></p>
+<p>Displaying an image through various stages of processing can be useful and give insights into how the process affects the image.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</div><div class="line">plt.imshow(img)</div></pre></td></tr></table></figure>
-<p>###Converting an image from RGB to Gray scale</p>
+<p><strong>Converting an image from RGB to Gray scale</strong></p>
 <p>It’s difficult to handle a colour image during processing because the image becomes a <strong>3-Dimensional array</strong>, this is usually solved by converting the image to a gray scale (“removing” the third dimension) where varying intensity of the gray colour represents the image.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> skimage <span class="keyword">import</span> rgb2gray</div><div class="line">img_gray = rgb2gray(img)</div></pre></td></tr></table></figure>
 <p>This function returns a numpy array of dtype float64. Care should be taken to convert it back into integer before performing tasks that require integer type values.</p>
-<p>###Converting an image array from float64 to uint8<br>Through the stages of processing, data type casting is a much used technique because of the varied kind of algorithms used.</p>
+<p><strong>Converting an image array from float64 to uint8</strong></p>
+<p>Through the stages of processing, data type casting is a much used technique because of the varied kind of algorithms used.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line">img_gray_int = (img_gray * <span class="number">255</span>).astype(np.uint8)</div></pre></td></tr></table></figure>
 <ul>
 <li>np.uint8 : Unsigned integer (0 to 255)</li>
 <li>float64 : Double precision float: sign bit, 11 bits exponent, 52 bits mantissa</li>
 </ul>
-<p>##Experiment 1 : Object Detection</p>
-<p>In order to detect an object, its borders should be detected first. For that purpose we use <strong>Gradient Vectors</strong> of <strong>pixels</strong> of an image. Roughly speaking, gradient vector is the <em>“<strong>change</strong> in x and y direction”</em> of a pixel. Chris McCormick explains it beautifully in his <a href="http://mccormickml.com/2013/05/07/gradient-vectors/" target="_blank" rel="external">blog</a>.</p>
+<h2 id="Experiment-1-Object-Detection"><a href="#Experiment-1-Object-Detection" class="headerlink" title="Experiment 1 : Object Detection"></a>Experiment 1 : Object Detection</h2><p>In order to detect an object, its borders should be detected first. For that purpose we use <strong>Gradient Vectors</strong> of <strong>pixels</strong> of an image. Roughly speaking, gradient vector is the <em>“<strong>change</strong> in x and y direction”</em> of a pixel. Chris McCormick explains it beautifully in his <a href="http://mccormickml.com/2013/05/07/gradient-vectors/" target="_blank" rel="external">blog</a>.</p>
 <p>Gradient vector can be calculated by using numpy’s <strong>gradient()</strong> method.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#X and Y gradients</span></div><div class="line">gx, gy = np.gradient(img_gray)</div><div class="line"><span class="comment">#Calculating magnitude of the vector</span></div><div class="line">g = (gx ** <span class="number">2</span> + g ** <span class="number">2</span>) ** <span class="number">.5</span></div><div class="line"><span class="comment">#plotting g</span></div><div class="line">plt.imshow(g)</div></pre></td></tr></table></figure>
-<p><img src="/blog/images/car.png" alt="car"></p>
-<p>Original Car Picture</p>
-<p><img src="/blog/images/car2.png" alt="gray car"></p>
-<p>Car in Gray Scale</p>
-<p><img src="/blog/images/car3.png" alt="border car"></p>
-<p>Car Image after plotting <strong>g</strong> shows borders.</p>
+<p><img src="/blog/images/car.png" alt="Original Car Picture"></p>
+<p><img src="/blog/images/car2.png" alt="Car in Gray Scale"></p>
+<p><img src="/blog/images/car3.png" alt="Car Image after plotting **g** shows borders"></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://simplysanad.com/blog/blog/2017/05/13/Experiments-with-concepts-of-Image-Processing/" data-id="cj2n9xnjf0001ebr5ws05fbem" class="article-share-link">Share</a>
+      <a data-url="http://simplysanad.com/blog/blog/2017/05/13/Experiments-with-concepts-of-Image-Processing/" data-id="cj2nae48s0000g8r59tcmzi3m" class="article-share-link">Share</a>
       
         <a href="http://simplysanad.com/blog/blog/2017/05/13/Experiments-with-concepts-of-Image-Processing/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -211,7 +209,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://simplysanad.com/blog/blog/2016/11/03/Arch-Diaries-What-to-do-when-your-virtual-hard-disk-is-out-of-memory-in-vbox/" data-id="cj2n9xnj80000ebr5yygfb0oc" class="article-share-link">Share</a>
+      <a data-url="http://simplysanad.com/blog/blog/2016/11/03/Arch-Diaries-What-to-do-when-your-virtual-hard-disk-is-out-of-memory-in-vbox/" data-id="cj2nae48x0001g8r5hzsm01xj" class="article-share-link">Share</a>
       
         <a href="http://simplysanad.com/blog/blog/2016/11/03/Arch-Diaries-What-to-do-when-your-virtual-hard-disk-is-out-of-memory-in-vbox/#disqus_thread" class="article-comment-link">Comments</a>
       
