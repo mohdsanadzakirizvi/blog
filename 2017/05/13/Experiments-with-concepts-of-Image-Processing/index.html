@@ -3,17 +3,22 @@
 <head>
   <meta charset="utf-8">
   
-  <title>My experiments code , music and life</title>
+  <title>Experiments with concepts of Image Processing | My experiments code , music and life</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="A place where I share my experiences in tech,music,life and virtually anything">
-<meta property="og:type" content="website">
-<meta property="og:title" content="My experiments code , music and life">
-<meta property="og:url" content="http://simplysanad.com/blog/index.html">
+  <meta name="description" content="I was using MacOS’s Preview to sign a PDF document and came across this amazing feature that lets you create a digital version of your signature by clicking a photo of it through your webcam. This int">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Experiments with concepts of Image Processing">
+<meta property="og:url" content="http://simplysanad.com/blog/2017/05/13/Experiments-with-concepts-of-Image-Processing/index.html">
 <meta property="og:site_name" content="My experiments code , music and life">
-<meta property="og:description" content="A place where I share my experiences in tech,music,life and virtually anything">
+<meta property="og:description" content="I was using MacOS’s Preview to sign a PDF document and came across this amazing feature that lets you create a digital version of your signature by clicking a photo of it through your webcam. This int">
+<meta property="og:image" content="http://simplysanad.com/blog/blog/images/car.png">
+<meta property="og:image" content="http://simplysanad.com/blog/blog/images/car2.png">
+<meta property="og:image" content="http://simplysanad.com/blog/blog/images/car3.png">
+<meta property="og:updated_time" content="2017-05-13T13:00:13.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="My experiments code , music and life">
-<meta name="twitter:description" content="A place where I share my experiences in tech,music,life and virtually anything">
+<meta name="twitter:title" content="Experiments with concepts of Image Processing">
+<meta name="twitter:description" content="I was using MacOS’s Preview to sign a PDF document and came across this amazing feature that lets you create a digital version of your signature by clicking a photo of it through your webcam. This int">
+<meta name="twitter:image" content="http://simplysanad.com/blog/blog/images/car.png">
   
     <link rel="alternate" href="/atom.xml" title="My experiments code , music and life" type="application/atom+xml">
   
@@ -75,9 +80,7 @@ ga('send', 'pageview');
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-Experiments-with-concepts-of-Image-Processing" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Experiments-with-concepts-of-Image-Processing" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/blog/2017/05/13/Experiments-with-concepts-of-Image-Processing/" class="article-date">
   <time datetime="2017-05-13T11:53:43.000Z" itemprop="datePublished">2017-05-13</time>
@@ -90,8 +93,8 @@ ga('send', 'pageview');
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/blog/2017/05/13/Experiments-with-concepts-of-Image-Processing/">Experiments with concepts of Image Processing</a>
+    <h1 class="article-title" itemprop="name">
+      Experiments with concepts of Image Processing
     </h1>
   
 
@@ -147,85 +150,26 @@ ga('send', 'pageview');
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-Arch-Diaries-What-to-do-when-your-virtual-hard-disk-is-out-of-memory-in-vbox" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/blog/2016/11/03/Arch-Diaries-What-to-do-when-your-virtual-hard-disk-is-out-of-memory-in-vbox/" class="article-date">
-  <time datetime="2016-11-03T18:00:08.000Z" itemprop="datePublished">2016-11-03</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/blog/2016/11/03/Arch-Diaries-What-to-do-when-your-virtual-hard-disk-is-out-of-memory-in-vbox/">Arch Diaries : What to do when your virtual hard disk is out of memory in virtualbox?</a>
-    </h1>
+    <a href="/blog/2016/11/03/Arch-Diaries-What-to-do-when-your-virtual-hard-disk-is-out-of-memory-in-vbox/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Arch Diaries : What to do when your virtual hard disk is out of memory in virtualbox?</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>So this happened while I was setting up my <a href="http://archlinux.org/" target="_blank" rel="external">Arch Linux</a> installation on Virtualbox. While installing <a href="https://www.freedesktop.org/wiki/Software/LightDM/" target="_blank" rel="external">LightDM</a> I got an error saying there isn’t enough space in my <strong>/ (root partition mounting point)</strong>. My setup for the drive partition was :<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">NAME        SIZE        MOUNTPOINT</div><div class="line"> - sda</div><div class="line">   -- sda1   2GB        /            </div><div class="line">   -- sda2   2GB        /home        </div><div class="line">   -- sda3   1GB        swap</div></pre></td></tr></table></figure></p>
-<p>I soon realised my mistake , I needed more space in my root partition but Virtualbox won’t allow me to increase the hardisk size. The only option would be to repeat the entire process ,<br><code>create a virtual machine with a larger hard drive --&gt; install Arch.</code></p>
-<p>I was looking for a smarter way to avoid repeating the entire procedure. Based on a hunch I created a new hard drive <strong>NewVirtualDisk.vdi</strong> for the Arch installation :<br><img src="/blog/images/newharddrive.jpg" alt="NewVirtualDisk"></p>
-<p>The new hard drive was mounted as <code>/dev/sdb</code>. My plan was to <em>move the /home partition to the 8GB volume and give the entire 5GB to the / partition</em> . This way both the root and home will have good amount of space.</p>
-<p>The first step was to format the raw 8GB volume into <strong>ext4</strong> and make a primary partition in it :<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo mkfs.ext4 /dev/sdb <span class="comment">#format /dev/sdb to ext4</span></div></pre></td></tr></table></figure></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ sudo umount /dev/sdb</div><div class="line">$ sudo fdisk /dev/sdb</div><div class="line">$(fdisk console) p <span class="comment">#print existing partition table</span></div><div class="line">$(fdisk console) n <span class="comment">#create a new partition </span></div><div class="line">$(fdisk console) w <span class="comment">#commit the changes</span></div></pre></td></tr></table></figure>
-<p>The new partition looked like this :<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$ lsblk</div><div class="line">NAME        SIZE        MOUNTPOINT</div><div class="line"> - sda</div><div class="line">   -- sda1   2GB        /            </div><div class="line">   -- sda2   2GB        /home        </div><div class="line">   -- sda3   1GB        swap         </div><div class="line"> - sdb</div><div class="line">   -- sdb1   8GB</div></pre></td></tr></table></figure></p>
-<p>Great now I had my hard drive and partitions ready, next step was to safely mount <code>/home</code> in <code>/dev/sdb1</code> instead of current <code>/dev/sda2</code>.</p>
-<p>Here comes the interesting part, for making changes to the mounting point of /home we need to first edit the <code>fstab</code> file which we generated during our installation.</p>
-<p>The <a href="https://en.wikipedia.org/wiki/Fstab" target="_blank" rel="external">fstab or File Systems Table</a> is a system configuration file that typically <strong><em>lists all available disk partitions indicating how they are to be initialized or otherwise integrated into the larger file system structure</em></strong>. It is read by <code>mount</code> command, which happens automatically at boot time to determine the overall file system structure.</p>
-<p><em>fstab</em> is found at <code>/etc/fstab</code> and can be set up in two modes , either using the <em>uuid</em> or <em>label</em> of the partitions. Both the label and uuid info of partitions can be found by :</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ lsblk <span class="_">-f</span></div></pre></td></tr></table></figure>
-<p>To make changes to fstab one needs root priviledges :<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo nano /etc/fstab</div></pre></td></tr></table></figure></p>
-<p>In the fstab, we have to replace the <em>label or uuid</em> of <code>sda2</code> with <code>sdb1</code> in <code>/home</code> mount point section. This is how my fstab looked like after the changes :<br><img src="/blog/images/fstab.jpg" alt="fstab"></p>
-<p>As can be seen , <code>/home</code> is now supposed to be mounted on <code>/dev/sdb1</code>. </p>
-<p>Now since the <code>mount</code> command reads <code>fstab</code> just a single unmounting and remounting process will mount <code>/home</code> correctly onto <code>/dev/sdb1</code> but we need to change to <code>/</code> before we can unmount/mount <code>/home</code> because you can’t unmount the file system you are currently in.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> / <span class="comment"># switch to root</span></div><div class="line">$ sudo umount /home</div><div class="line">$ sudo mount /home</div></pre></td></tr></table></figure>
-<p>Doing <code>lsblk</code> now showed <code>/home</code> is correctly mounted on <code>/dev/sdb1</code> but there was an issue, when I tried changing to my home directly it threw an error.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> </div><div class="line">error : could not find home/sanad</div></pre></td></tr></table></figure></p>
-<p>This error took me quite long to understand. What this meant was there was no <code>sanad</code> directory in our new <code>/home</code>. This was because the <em>installation was done on sda2 and the entire folder of user <code>sanad</code> was there</em>. What to do now? Simple, <strong><em>Copy all the contents of the folder from the other partition ! </em></strong>(by the way this was a hunch) </p>
-<p>First I needed to mount the previous partition <code>/dev/sda2</code> at a temporary place. Google helped me find that <code>/mnt</code> is used for the very same purpose.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo mount /dev/sda2 /mnt</div><div class="line">$ sudo cp -r -v /mnt/sanad/ home/</div></pre></td></tr></table></figure>
-<p>The above did the trick. The new <code>/home</code> had all the settings , data of the user <code>sanad</code>. Everything should work fine right? This time when I tried to CD to home I got another error : </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> </div><div class="line">error : permission denied</div></pre></td></tr></table></figure>
-<p>This was because I didn’t had enough permissions to read/execute/write to the <code>sanad</code> folder. A simple setting of <code>ownerships</code> and <code>permissions</code> fixed it.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ sudo chown -R sanad home/sanad <span class="comment"># change ownership of home folder to sanad</span></div><div class="line">$ sudo chmod u+rwx home/sanad <span class="comment"># give the read,write and execute permissions to the current owner (in this case 'sanad')</span></div><div class="line">$ <span class="built_in">cd</span> <span class="comment">#change directory to home/sanad will work</span></div><div class="line">$ ls <span class="_">-l</span> <span class="comment">#check permissions and ownership</span></div><div class="line">total 8</div><div class="line">drwx------ 2 root  root 4096 Nov 3 11:59 lost+found </div><div class="line">drwx------ 4 sanad root 4096 Nov 3 12:37 sanad</div></pre></td></tr></table></figure>
-<p>finally, <code>cd</code> took me to my home directory and I was able to use it normally :) </p>
-<p>This is how the setup looked like after the last step:<br><img src="/blog/images/final.jpg" alt="final setup"></p>
-<p>This was just the first step, now the next steps would be : </p>
-<p>1) Delete the partitions <code>sda2</code> and <code>sda3</code></p>
-<p>2) Extend <code>sda1</code> to use entire 5GB volume (by maybe using chroot and fdisk)</p>
-<p>3) Resize the file system for the new size of the partition ( maybe resize2fs). </p>
-<p><strong>P.S.</strong> : I would like to thank amazing <strong>Arch Linux Community</strong> and <strong>OracleVirtualBox Team and Community</strong> for all their support. You guys rock! I am learning a lot by this method of self exploring because of <strong>DIY nature of Arch</strong> , thanks for that too.</p>
-<p>Till then, stay tuned and Happy Hacking!</p>
-<p>-Sanad<br><strong>For corrections/suggestions</strong> : mohdsanadzakirizvi@gmail.com</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://simplysanad.com/blog/blog/2016/11/03/Arch-Diaries-What-to-do-when-your-virtual-hard-disk-is-out-of-memory-in-vbox/" data-id="cj2n9xnj80000ebr5yygfb0oc" class="article-share-link">Share</a>
-      
-        <a href="http://simplysanad.com/blog/blog/2016/11/03/Arch-Diaries-What-to-do-when-your-virtual-hard-disk-is-out-of-memory-in-vbox/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Arch/">Arch</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/fdisk/">fdisk</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/partition/">partition</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/virtualbox/">virtualbox</a></li></ul>
-
-    </footer>
-  </div>
   
 </article>
 
 
-  
-
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
 </section>
         
           <aside id="sidebar">
@@ -305,11 +249,13 @@ ga('send', 'pageview');
 <script>
   var disqus_shortname = 'simplysanad';
   
+  var disqus_url = 'http://simplysanad.com/blog/blog/2017/05/13/Experiments-with-concepts-of-Image-Processing/';
+  
   (function(){
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
   })();
 </script>
