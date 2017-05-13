@@ -14,7 +14,7 @@
 <meta property="og:image" content="http://simplysanad.com/blog/blog/images/car.png">
 <meta property="og:image" content="http://simplysanad.com/blog/blog/images/car2.png">
 <meta property="og:image" content="http://simplysanad.com/blog/blog/images/car3.png">
-<meta property="og:updated_time" content="2017-05-13T13:19:10.000Z">
+<meta property="og:updated_time" content="2017-05-13T13:20:43.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Experiments with concepts of Image Processing">
 <meta name="twitter:description" content="I was using MacOS’s Preview to sign a PDF document and came across this amazing feature that lets you create a digital version of your signature by clicking a photo of it through your webcam. This int">
@@ -133,20 +133,20 @@ ga('send', 'pageview');
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#X and Y gradients</span></div><div class="line">gx, gy = np.gradient(img_gray)</div><div class="line"><span class="comment">#Calculating magnitude of the gradient vector</span></div><div class="line">g = (gx ** <span class="number">2</span> + gy ** <span class="number">2</span>) ** <span class="number">.5</span></div><div class="line"><span class="comment">#plotting g</span></div><div class="line">plt.imshow(g)</div></pre></td></tr></table></figure>
 <p><img src="/blog/images/car.png" alt="Original Car Picture"></p>
 <p><img src="/blog/images/car2.png" alt="Car in Gray Scale"></p>
-<p><img src="/blog/images/car3.png" alt="Car Image after plotting **g** shows borders"></p>
+<p><img src="/blog/images/car3.png" alt="Car Image after plotting g~magnitude of gradient vector shows borders"></p>
 <p>As can be seen we <strong>extract useful features</strong> of the image, step by step removing/ignoring the information we don’t need. </p>
 <p>We followed the following steps :</p>
 <ul>
 <li>Removed the colours by converting the image to gray scale</li>
 <li>Replaced the pixel values by calculating pixel gradient </li>
-<li>Calculated the <strong>gradient vector’s magnitude</strong> by the formula : <code>g = (gx ** 2 + gy ** 2) ** .5</code></li>
+<li>Calculated the <strong>gradient vector’s magnitude</strong> by the formula :<br><code>g = (gx ** 2 + gy ** 2) ** .5</code></li>
 <li>On plotting this magnitude, we can an image with borders clearly marked.</li>
 </ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://simplysanad.com/blog/blog/2017/05/13/Experiments-with-concepts-of-Image-Processing/" data-id="cj2nat7zu0001hwr5ll3tpje6" class="article-share-link">Share</a>
+      <a data-url="http://simplysanad.com/blog/blog/2017/05/13/Experiments-with-concepts-of-Image-Processing/" data-id="cj2nav1vh0000i8r56m9394as" class="article-share-link">Share</a>
       
         <a href="http://simplysanad.com/blog/blog/2017/05/13/Experiments-with-concepts-of-Image-Processing/#disqus_thread" class="article-comment-link">Comments</a>
       
